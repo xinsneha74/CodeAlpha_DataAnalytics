@@ -1,1 +1,55 @@
-Total Employees = COUNT(Employee[EmployeeID])
+-- Total Employees
+Total Employees =
+COUNT(HR_Analytics[EmployeeID])
+
+-- Employees Left
+Employees Left =
+COUNT(HR_Analytics[ExitDate])
+
+-- Active Employees
+Active Employees =
+[Total Employees] - [Employees Left]
+
+-- Attrition Rate %
+Attrition Rate =
+DIVIDE([Employees Left],[Total Employees],0)*100
+
+-- Average Satisfaction
+Average Satisfaction =
+AVERAGE(HR_Analytics[Satisfaction])
+
+-- Average Performance
+Average Performance =
+AVERAGE(HR_Analytics[Performance])
+
+-- Average Salary
+Average Salary =
+AVERAGE(HR_Analytics[Salary])
+
+-- Male Employees
+Male Employees =
+CALCULATE(
+    COUNT(HR_Analytics[EmployeeID]),
+    HR_Analytics[Gender] = "Male"
+)
+
+-- Female Employees
+Female Employees =
+CALCULATE(
+    COUNT(HR_Analytics[EmployeeID]),
+    HR_Analytics[Gender] = "Female"
+)
+
+-- High Performers
+High Performers =
+CALCULATE(
+    COUNT(HR_Analytics[EmployeeID]),
+    HR_Analytics[Performance] >= 4
+)
+
+-- Satisfied Employees
+Satisfied Employees =
+CALCULATE(
+    COUNT(HR_Analytics[EmployeeID]),
+    HR_Analytics[Satisfaction] >= 4
+)
